@@ -1,0 +1,6 @@
+<div class="row mt-3">
+    <div class="col-6" *ngFor="let p of portfolios">
+        <img [src]="p.url" alt="" class="img-fluid">
+        <h2>{{ p.titre }}</h2>
+    </div>
+</div>

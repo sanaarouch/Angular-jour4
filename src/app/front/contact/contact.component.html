@@ -1,0 +1,78 @@
+<!-- 
+ne pas mettre l'attribut action / method dans la balise form
+-->
+<h2 class="mt-3">Nous contacter</h2>
+<div class="alert alert-success" *ngIf="success">
+    vous demande de contact a bien été enregistré, nous revenons vers vous au plus vite !
+</div>
+<form #f="ngForm" (submit)="demandeContact(f)">
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+            type="text" 
+            name="email" 
+            class="form-control"
+            ngModel
+            #email="ngModel"
+            required 
+            minlength="3"
+            maxlength="255"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            [(ngModel)]="email_input"
+            >
+            <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+                <p *ngIf="email.errors.required">Veuillez compléter le champ email</p>
+                <p *ngIf="email.errors.minlength">le champ email doit avoir 3 caractères au minimum</p>
+                <p *ngIf="email.errors.maxlength">le champ email contient au maximum 255 caractères</p>
+                <p *ngIf="email.errors.pattern">le champ email n'est pas conforme</p>
+            </div>
+    </div>
+    <div class="form-group">
+        <label for="commentaire">Commentaire :</label> <br>
+        <textarea 
+            name="commentaire" 
+            class="form-control"
+            ngModel
+            #commentaire="ngModel"
+            required
+            minlength="3"
+            maxlength="255"
+            [(ngModel)]="commentaire_input"
+            ></textarea>
+            <!--  le champ commentaire réaliser les même test que pour le champ email 
+            -->
+            <div class="alert alert-danger" *ngIf="commentaire.touched && !commentaire.valid">
+                <p *ngIf="commentaire.errors.required">Veuillez compléter ce champ</p>
+                <p *ngIf="commentaire.errors.minlength">Commentaire doit contenir 3 caractères au minimum</p>
+                <p *ngIf="commentaire.errors.maxlength">Commentaire doit contenir au maximum 255 caractères</p>
+            </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary">
+    </div>
+</form>
+
+<!--  est disponible dans le support de cours 
+jour2 > Template-driven Forms > section 3 ngModel - FormControl
+maintenant que j'ai réalisé mon formulaire
+je souhaite pouvoir récupérer les informations qui sont saisies 
+pour réaliser cette tâche 
+il va falloir modifier des fichiers 
+1 dans src/app/app.module.ts 
+télécharger un module FormsModule from @angular/forms 
+ déclarer dans imports
+2 ajouter des nouveaux attributs dans notre formulaire
+qui se trouve dans src/app/front/contact.component.ts / .html
+nous avons déjà vu *ngFor 
+ngModel => attribut spéciale qui va permettre de facilement récupérer les valeurs saisies dans le formulaire 
+ngForm = attribut spéciale qui va nous permettre de voir quand la personne a cliqué 
+*ngIf => permettre d'afficher des messages si le formulaire n'est pas rempli convenablement 
+nous allons ajouter des vérifications 
+par exemple = il faut que les champs soient remplis
+il faut que les champs ressemble à un email
+.... 
+avant de lancer un enregistrement en bdd
+pour rappel, nous aviosn déjà réalisé des test avec la librairie @hapi/joi 
+nous allons effectuer des test similaires 
+les formulaires => zone DANGEREUSE dans le site internet 
+-->

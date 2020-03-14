@@ -1,0 +1,86 @@
+<div class="row">
+    <article *ngFor="let article of articles" class="col-6">
+        <h2>{{article.body}}</h2>
+        <p style="white-space: pre-line">{{article.body}}</p>
+
+    </article>
+</div>>
+<!--
+    Remplir la page articles via une adressse internet
+    Sur le support a l'adresse  suivante
+    jour3> Consommer des Services HTTP > JSON Placeholder - notre API
+
+    https://jsonplaceholder.typicode.com/posts => 100 articles
+    return un JSON qui contient 100 articles
+
+    Ca se fait en plusieurs etapes et plusieurs fichiers
+
+    1
+    src/app/app.module
+    Utiliser un nouveau module HttpClientModule
+    Declarer dans le tableau imports
+
+    2
+    Utiliser ce module dans le composant src/app/front/article.component.ts
+    Import HttpClient
+
+    3
+    Dans src/app/front/article.component.ts appeler notre adresse internet
+    a. variable de class api=https://jsonplaceholder.typicode.com/posts
+    
+    b. Dans le constructeur du composant, nous allons declarer le service
+    constructor(private http : HttpClient){}
+    cree une deuxieme variable http typer avec la class HttpClient
+
+    c. Nous allons enfin utiliser la methode ngOnInit(){
+        this.http.get(this.api)
+                 .subscribe( function(response : Response){
+                     console.log(response)
+                 })
+    }
+    hook = point d'accroche
+
+
+<div class="row">
+    <article *ngFor="let article of articles" class="col-6">
+        <h2>{{ article.title }}</h2>
+        <p style="white-space: pre-line;">{{ article.body }}</p>
+    </article>
+</div>
+
+<!-- 
+    remplir la page articles via une adresse internet
+    sur le support à l'adresse suivante 
+    jour3 > Consommer des Services HTTP > JSON Placeholder - notre API
+    https://jsonplaceholder.typicode.com/posts => 100 articles 
+    retourn un JSON qui contient 100 articles 
+    ça se fait en plusieurs étapes et en plusieurs fichiers
+    1 src/app/app.module.ts 
+    utiliser un nouveau module HttpClientModule
+    déclarer dans le tableau imports 
+    2 utiliser ce module dans un de mes composants
+    importer le module dans le composant src/app/front/article/article.component.ts 
+    import HttpClient  
+    3 toujours dans src/app/front/article/article.component.ts 
+    appeler notre adresse internet 
+    a variable de class api = https://jsonplaceholder.typicode.com/posts
+    b dans le constructeur du composant, nous allons déclarer le service
+    constructor(private http: HttpClient) { }
+    crée une deuxieme variable http typer avec le class HttpClient
+    c nous allons enfin utiliser la méthode ngOnInit(){
+        this.http.get(this.api)
+                .subscribe( function(response : Response){
+                    console.log(response)
+                })
+    }
+    hook = point d'accroche => 
+-->
+
+<!-- 
+    dans le composant front/contact
+    insérer un formulaire en html 
+    email input type text
+    commentaire textarea  
+    button submit 
+    ne pas hésiter à utiliser bootstrap pour la mise en forme 
+-->
